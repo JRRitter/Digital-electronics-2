@@ -2,8 +2,8 @@
 
 ## Common LED wiring
 
-![alt text](././Images/LED-active-high.jpg)
-![alt text](././Images/LED-active-low.jpg)
+![alt text](../../Images/LED-active-high.jpg)
+![alt text](../../Images/LED-active-low.jpg)
 
 ## Computing resistor values for LEDs
 
