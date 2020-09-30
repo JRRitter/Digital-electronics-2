@@ -15,3 +15,8 @@
 
 ![alt text](https://latex.codecogs.com/gif.latex?R&space;=&space;\frac{V_{SUPPLY}-V_{LED}}{I}&space;=&space;\frac{5&space;-&space;1,7}{20\cdot&space;10^{-3}}&space;=&space;660\&space;\Omega)
 
+## Common pushbutton wiring
+
+![alt text](../../Images/PB-active-high.jpg)
+![alt text](../../Images/PB-active-low.jpg)
+
