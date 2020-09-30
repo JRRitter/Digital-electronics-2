@@ -7,10 +7,10 @@
 
 ## Computing resistor values for LEDs
 
-| **LED color** | **Supply voltage** | **LED current** | **LED voltage** | **Resistor value** |
+| **LED color** | **Supply voltage[V]** | **LED current [mA]** | **LED voltage [V]** | **Resistor value [Ohm]** |
 |:-:|:-:|:-:|:-:|:-:|
-| red | 5 V | 20 mA | 1,7 V | 660 $\Omega$ |
-| blue | 5 V | 20 mA | 3 V | 100 $\Omega$ |
+| red | 5 | 20 | 1,7 | 660 |
+| blue | 5 | 20 | 3 | 100 |
 
 
 ![alt text](https://latex.codecogs.com/gif.latex?R&space;=&space;\frac{V_{SUPPLY}-V_{LED}}{I}&space;=&space;\frac{5&space;-&space;1,7}{20\cdot&space;10^{-3}}&space;=&space;660\&space;\Omega)
