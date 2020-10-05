@@ -29,18 +29,19 @@
  */
 int main(void)
 {
-    /* GREEN LED */
+	/* ORIGINAL VERSION
+    // GREEN LED 
     // Set pin as output in Data Direction Register...
     DDRB = DDRB | (1<<LED_GREEN);
     // ...and turn LED off in Data Register
     PORTB = PORTB & ~(1<<LED_GREEN);
 
-    /* second LED */
+    // second LED
     // Setting pin PC0 to output
 	DDRC = DDRC | (1<<LED_RED);
 	// ...turning  on the led (high output)
 	PORTC = PORTC & ~(1<<LED_RED);
-	
+	*/
 	
 	/* pushbutton */
 	// Setting pin PD0 to input
@@ -48,10 +49,18 @@ int main(void)
 	// ...and enabling internal pull-up resistor
 	PORTD = PORTD | (1<<PUSHBTN);
 	
+	//Setting pins to output
+	DDRC = DDRC | 31; // 0001 1111
+	//Turning off LEDs (active low)
+	PORTC = PORTC | 31;// 0001 1111
+	
+	
     // Infinite loop
     while (1)
     {
-        // Pause several milliseconds
+        /* ORIGINAL VERSION
+		
+		// Pause several milliseconds
         _delay_ms(BLINK_DELAY);
 		if (bit_is_clear(PIND, PUSHBTN)) 
 		{
@@ -59,7 +68,28 @@ int main(void)
 			PORTB = PORTB ^ (1<<LED_GREEN);
 			PORTC = PORTC ^ (1<<LED_RED);
 		}
-        
+        */
+		
+		
+		// Knight Rider application
+		while (bit_is_clear(PIND,PUSHBTN))
+		{
+			for (int i = 0; i < 5; i++)
+			{
+				_delay_ms(BLINK_DELAY);
+				PORTC = ~(1<<i); // setting only one led on
+			}
+			for (int i = 0; i < 5; i++)
+			{
+				_delay_ms(BLINK_DELAY);
+				PORTC = ~(16>>i); // setting only one led on
+			}
+			_delay_ms(BLINK_DELAY);
+			PORTC = PORTC | 31;// turning off leds
+			
+		}
+		
+		
     }
 
     // Will never reach this
