@@ -1,18 +1,4 @@
-/***********************************************************************
- * 
- * Alternately toggle two LEDs when a push button is pressed. Use 
- * functions from GPIO library.
- * ATmega328P (Arduino Uno), 16 MHz, AVR 8-bit Toolchain 3.6.2
- *
- * Copyright (c) 2019-2020 Tomas Fryza
- * Dept. of Radio Electronics, Brno University of Technology, Czechia
- * This work is licensed under the terms of the MIT license.
- * 
- **********************************************************************/
-
 /* Defines -----------------------------------------------------------*/
-#define LED_GREEN   PB5     // AVR pin where green LED is connected
-#define LED_RED		PC0		// AVR pin where red LED is connected
 #define PBTN		PD0		// AVR pin where pushbutton is connected
 #define BLINK_DELAY 500
 #ifndef F_CPU
@@ -26,34 +12,72 @@
 
 /* Function definitions ----------------------------------------------*/
 /**
- * Main function where the program execution begins. Toggle two LEDs 
- * when a push button is pressed. Functions from user-defined GPIO
- * library is used instead of low-level logic operations.
+ * Main function where the program execution begins. Toggle five LEDs 
+ * Knight rider style when a pushbutton is pressed. Application is
+ * using functions from GPIO library for configuring, writing 
+ * and reading pins.
  */
 int main(void)
 {
-    /* GREEN LED */
-    GPIO_config_output(&DDRB, LED_GREEN);
-    GPIO_write_low(&PORTB, LED_GREEN);
-
-    /* RED LED */
-    GPIO_config_output(&DDRC, LED_RED);
-    GPIO_write_high(&PORTC, LED_RED);
-
+	
     /* push button */
     GPIO_config_input_pullup(&DDRD, PBTN);
+	
+	/* Knight rider LEDs */
+	
+	for (uint8_t i = 0; i < 5; i++)
+	{
+		GPIO_config_output(&DDRC, i);
+		GPIO_write_high(&PORTC, i);
+	}
+
 
     // Infinite loop
     while (1)
     {
-        // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
-       
-		if (!GPIO_read(&PIND, PBTN))
+		// Knight rider sequence using GPIO library
+		if (GPIO_read(&PIND, PBTN) == 0)
 		{
-			GPIO_toggle(&PORTB, LED_GREEN);
-			GPIO_toggle(&PORTC, LED_RED);
+			// up sequence
+			GPIO_write_low(&PORTC, 0);	// ON
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 1);	// ON
+			GPIO_write_high(&PORTC, 0);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 2);	// ON
+			GPIO_write_high(&PORTC, 1);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 3);	// ON
+			GPIO_write_high(&PORTC, 2);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 4);	// ON
+			GPIO_write_high(&PORTC, 3);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 3);	// ON
+			GPIO_write_high(&PORTC, 4);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 2);	// ON
+			GPIO_write_high(&PORTC, 3);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 1);	// ON
+			GPIO_write_high(&PORTC, 2);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_low(&PORTC, 0);	// ON
+			GPIO_write_high(&PORTC, 1);	// OFF
+			
+			_delay_ms(BLINK_DELAY);
+			GPIO_write_high(&PORTC, 0);	// OFF
+				
 		}
+		
     }
 
     // Will never reach this
