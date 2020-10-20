@@ -1,4 +1,4 @@
-#Lab prerequisites
+# Lab prerequisites
 **Common Cathode (CC)** displays have all of their segments' cathodes connected to a common ground, the respective anodes are then connected to individual pins. Active high.
 
 **Common Anode (Ca)** displays have all of their segments' anodes connected to a common source, the respective cathodes are then connected to individual pins. Active low.
