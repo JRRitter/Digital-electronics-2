@@ -14,3 +14,7 @@
 | D[7:4] | 0100 | Higher four bits of sent word |
 | D[7:4] | 0011 | ASCII code: C|
 
+
+The ASCII table is a form of look-up table. Computers can only understand numbers, so an ASCII code is the numerical representation of a character such as 'a' or '@' or an action of some sort.
+
+Numbers (0 to 9) range from 0x30 to 0x39, uppercase letters (A to Z) from 0x41 to 0x5A and lowercase letters (a to z) from 0x61 to 0x7A.
