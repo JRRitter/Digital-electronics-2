@@ -23,23 +23,19 @@
  */
 /* Variables ---------------------------------------------------------*/
 // Custom character definition using https://omerk.github.io/lcdchargen/
-uint8_t customChar[16] = {
-	0b01110,
-	0b10001,
-	0b10001,
-	0b10001,
-	0b10001,
-	0b10001,
-	0b11111,
-	0b00000,
-	0b01110,
-	0b10001,
-	0b10001,
-	0b11111,
-	0b11111,
-	0b11111,
-	0b11111,
-	0b00000
+uint8_t customChar[] = {
+	// addr 0: .....
+	0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000, 0b00000,
+	// addr 1: |....
+	0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000, 0b10000,
+	// addr 2: ||...
+	0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000, 0b11000,
+	// addr 3: |||.. 
+	0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100, 0b11100,
+	// addr 4: ||||. 
+	0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110, 0b11110,
+	// addr 5: ||||| 
+	0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 0b11111, 
 };
 
 int main(void)
@@ -50,34 +46,35 @@ int main(void)
 
 	// Set pointer to beginning of CGRAM memory
 	lcd_command(1 << LCD_CGRAM);
-	for (uint8_t i = 0; i < 16; i++)
+	for (uint8_t i = 0; i < 48; i++)
 	{
 		// Store all new chars to memory line by line
 		lcd_data(customChar[i]);
 	}
 	// Set DDRAM address
 	lcd_command(1 << LCD_DDRAM);
-		
-	// Display first custom character
-	lcd_gotoxy(14,0);
-	lcd_putc(0);
-	lcd_putc(1);
 
     // Put string(s) at LCD display
     lcd_gotoxy(1, 0);
     lcd_puts("00:00.0");
 	
 	lcd_gotoxy(11,0);
-	lcd_putc('a');
-	lcd_gotoxy(1,1);
-	lcd_putc('b');
-	lcd_gotoxy(11,1);
-	lcd_putc('c');
+	lcd_putc('0');
 
     // Configure 8-bit Timer/Counter2 for Stopwatch
     // Set prescaler and enable overflow interrupt every 16 ms
 	TIM2_overflow_16ms();
 	TIM2_overflow_interrupt_enable();
+	
+	// Configure 8-bit Timer/Counter0 for Stopwatch
+	// Set prescaler and enable overflow interrupt every 16 ms
+	TIM0_overflow_16ms();
+	TIM0_overflow_interrupt_enable();
+	
+	// Configure 16-bit Timer/Counter1 for Stopwatch
+	// Set prescaler and enable overflow interrupt every 16 ms
+	TIM1_overflow_1s();
+	TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
     sei();
@@ -104,8 +101,10 @@ ISR(TIMER2_OVF_vect)
     static uint8_t number_of_overflows = 0;
 	static uint8_t tens = 0;        // Tenths of a second
 	static uint8_t secs = 0;        // Seconds
+	static uint8_t mins = 0;		// Minutes
 	char lcd_string[2] = "  ";      // String for converting numbers by itoa()
-
+	static uint16_t sq = 0;			// Square of seconds
+	char sq_string[4] = "    ";		// String for converting sq by itoa()
     number_of_overflows++;
     if (number_of_overflows >= 6)
     {
@@ -120,17 +119,22 @@ ISR(TIMER2_OVF_vect)
 			if (secs > 59)
 			{
 				secs = 0;
+				mins++;
+				if (mins > 59)
+				{
+					mins = 0;
+				}
 			}
-		}
+		}		
 		
+		// Displaying tenths of seconds
 		itoa(tens, lcd_string, 10);
 		lcd_gotoxy(7,0);
 		lcd_putc(lcd_string[0]);
 		
-		
+		// Displaying seconds	
 		itoa(secs, lcd_string, 10);
 		lcd_gotoxy(4,0);
-		
 		if (secs < 10)
 		{
 
@@ -142,6 +146,89 @@ ISR(TIMER2_OVF_vect)
 			lcd_puts(lcd_string);
 		}
 		
+		// Displaying minutes
+		itoa(mins, lcd_string, 10);
+		lcd_gotoxy(1,0);
+		if (mins < 10)
+		{
+			lcd_putc('0');
+			lcd_putc(lcd_string[0]);
+		}
+		else
+		{
+			lcd_puts(lcd_string);
+		}	
+		
+		// Displaying the square of seconds
+		sq = secs*secs;
+		itoa(sq, sq_string, 10);
+		lcd_gotoxy(11,0);
+		lcd_puts(sq_string);
+		if (sq == 0)
+		{
+			lcd_putc(' ');
+			lcd_putc(' ');
+			lcd_putc(' ');
+		}	
     }
 }
 
+
+/*--------------------------------------------------------------------*/
+/**
+ * ISR starts when Timer/Counter0 overflows. Update the progress bar on
+ * LCD display every 16 ms.
+ */
+ISR(TIMER0_OVF_vect)
+{
+    static uint8_t symbol = 0;
+    static uint8_t position = 0;
+
+    symbol++;
+	if (symbol > 5)
+	{
+		symbol = 0;
+		position++;
+		if (position > 9)
+		{
+			position = 0;
+			for (uint8_t i = 0; i < 10; i++)
+			{
+				lcd_gotoxy(1+i,1);
+				lcd_putc(0);
+			}
+		}
+	}
+	
+	lcd_gotoxy(1 + position, 1);
+    lcd_putc(symbol);
+	
+}
+
+/*--------------------------------------------------------------------*/
+/**
+ * ISR starts when Timer/Counter1 overflows. Update the progress bar on
+ * LCD display every 1 s.
+ */
+ISR(TIMER1_OVF_vect)
+{
+	static char text_display[] = "Help me I am trapped inside!"; 
+													// text on display
+	static uint8_t text_length = sizeof(text_display)/sizeof(char);
+	static uint8_t text_position = 0;	// position in the display text
+	
+	// Displaying moving text (position incrementation done above
+	// together with seconds)
+	if (text_position >= text_length-4)
+	{
+		text_position = 0;
+	}
+	lcd_gotoxy(11,1);
+	for (uint8_t j = 0; j < 4; j++)
+	{
+		lcd_gotoxy(11+j,1);
+		lcd_putc(text_display[text_position+j]);
+	}
+	
+	text_position++;
+};
