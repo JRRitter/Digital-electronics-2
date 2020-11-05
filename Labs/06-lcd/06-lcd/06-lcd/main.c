@@ -73,7 +73,7 @@ int main(void)
 	
 	// Configure 16-bit Timer/Counter1 for Stopwatch
 	// Set prescaler and enable overflow interrupt every 16 ms
-	TIM1_overflow_1s();
+	TIM1_overflow_262ms();
 	TIM1_overflow_interrupt_enable();
 
     // Enables interrupts by setting the global interrupt mask
@@ -102,9 +102,8 @@ ISR(TIMER2_OVF_vect)
 	static uint8_t tens = 0;        // Tenths of a second
 	static uint8_t secs = 0;        // Seconds
 	static uint8_t mins = 0;		// Minutes
-	char lcd_string[2] = "  ";      // String for converting numbers by itoa()
+	char lcd_string[4] = "    ";      // String for converting numbers by itoa()
 	static uint16_t sq = 0;			// Square of seconds
-	char sq_string[4] = "    ";		// String for converting sq by itoa()
     number_of_overflows++;
     if (number_of_overflows >= 6)
     {
@@ -137,7 +136,6 @@ ISR(TIMER2_OVF_vect)
 		lcd_gotoxy(4,0);
 		if (secs < 10)
 		{
-
 			lcd_putc('0');
 			lcd_putc(lcd_string[0]);	
 		}
@@ -161,9 +159,9 @@ ISR(TIMER2_OVF_vect)
 		
 		// Displaying the square of seconds
 		sq = secs*secs;
-		itoa(sq, sq_string, 10);
+		itoa(sq, lcd_string, 10);
 		lcd_gotoxy(11,0);
-		lcd_puts(sq_string);
+		lcd_puts(lcd_string);
 		if (sq == 0)
 		{
 			lcd_putc(' ');
@@ -192,7 +190,7 @@ ISR(TIMER0_OVF_vect)
 		if (position > 9)
 		{
 			position = 0;
-			for (uint8_t i = 0; i < 10; i++)
+			for (uint8_t i = 1; i < 10; i++) // clearing the bar
 			{
 				lcd_gotoxy(1+i,1);
 				lcd_putc(0);
@@ -212,14 +210,14 @@ ISR(TIMER0_OVF_vect)
  */
 ISR(TIMER1_OVF_vect)
 {
-	static char text_display[] = "Help me I am trapped inside!"; 
+	static uint8_t text_display[] = "    I like Digital electronics!\n"; 
 													// text on display
 	static uint8_t text_length = sizeof(text_display)/sizeof(char);
 	static uint8_t text_position = 0;	// position in the display text
 	
 	// Displaying moving text (position incrementation done above
 	// together with seconds)
-	if (text_position >= text_length-4)
+	if (text_position >= text_length)
 	{
 		text_position = 0;
 	}
@@ -227,7 +225,11 @@ ISR(TIMER1_OVF_vect)
 	for (uint8_t j = 0; j < 4; j++)
 	{
 		lcd_gotoxy(11+j,1);
-		lcd_putc(text_display[text_position+j]);
+		if (text_position+j >= text_length)
+		{
+			lcd_putc(text_display[text_position+j-text_length]);
+		}
+		else lcd_putc(text_display[text_position+j]);
 	}
 	
 	text_position++;
