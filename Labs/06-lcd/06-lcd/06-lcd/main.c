@@ -183,7 +183,7 @@ ISR(TIMER0_OVF_vect)
     static uint8_t position = 0;
 
     symbol++;
-	if (symbol > 5)
+	if (symbol >= 6)
 	{
 		symbol = 0;
 		position++;

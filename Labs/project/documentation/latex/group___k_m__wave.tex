@@ -1,0 +1,133 @@
+\doxysection{Signal library $<$wave.\+h$>$}
+\label{group___k_m__wave}\index{Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}}
+
+
+Calculate values of one of three useful signals. This library is able to calculate the numerical output values (8-\/bit unsigned integers) given the frequency and signal type. Its calculating function has to be continually called in order for it to function.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ wave\+\_\+init} (uint8\+\_\+t type\+\_\+signal, uint16\+\_\+t freq\+\_\+signal)
+\begin{DoxyCompactList}\small\item\em Initializing values further used for computing. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calculate} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of the given signal. \end{DoxyCompactList}\item 
+\mbox{\label{group___k_m__wave_ga62d19766121b58e4d3f9723d6cc0635d}} 
+void \textbf{ wave\+\_\+reset} (void)
+\begin{DoxyCompactList}\small\item\em resets all calculations. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calc\+\_\+sine} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of sine. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calc\+\_\+triangle} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of triangle. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calc\+\_\+square} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of square. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} \end{DoxyCompactList}\item 
+\mbox{\label{group___k_m__wave_gae9602c3285a4ec3387acb3429fce4bab}} 
+void {\bfseries walk} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Calculate values of one of three useful signals. This library is able to calculate the numerical output values (8-\/bit unsigned integers) given the frequency and signal type. Its calculating function has to be continually called in order for it to function. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <wave.h>} }
+\end{DoxyCode}
+
+
+\begin{DoxyAuthor}{Author}
+John Richard Ritter 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{group___k_m__wave_gaf6e9dda0c52cb1a7bf5266568ba140e6}} 
+\index{Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}!wave\_calc\_sine@{wave\_calc\_sine}}
+\index{wave\_calc\_sine@{wave\_calc\_sine}!Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}}
+\doxysubsubsection{wave\_calc\_sine()}
+{\footnotesize\ttfamily uint8\+\_\+t wave\+\_\+calc\+\_\+sine (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the next value of sine. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+8-\/bit value signal output 
+\end{DoxyReturn}
+\mbox{\label{group___k_m__wave_gad544fbcb0705d9dfa4628a77c2117502}} 
+\index{Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}!wave\_calc\_square@{wave\_calc\_square}}
+\index{wave\_calc\_square@{wave\_calc\_square}!Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}}
+\doxysubsubsection{wave\_calc\_square()}
+{\footnotesize\ttfamily uint8\+\_\+t wave\+\_\+calc\+\_\+square (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the next value of square. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+8-\/bit value signal output 
+\end{DoxyReturn}
+\mbox{\label{group___k_m__wave_ga35795b68b2c4c7582751be3763cd63d3}} 
+\index{Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}!wave\_calc\_triangle@{wave\_calc\_triangle}}
+\index{wave\_calc\_triangle@{wave\_calc\_triangle}!Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}}
+\doxysubsubsection{wave\_calc\_triangle()}
+{\footnotesize\ttfamily uint8\+\_\+t wave\+\_\+calc\+\_\+triangle (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the next value of triangle. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+8-\/bit value signal output 
+\end{DoxyReturn}
+\mbox{\label{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba}} 
+\index{Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}!wave\_calculate@{wave\_calculate}}
+\index{wave\_calculate@{wave\_calculate}!Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}}
+\doxysubsubsection{wave\_calculate()}
+{\footnotesize\ttfamily uint8\+\_\+t wave\+\_\+calculate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Calculates the next value of the given signal. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em none} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+8-\/bit value signal output 
+\end{DoxyReturn}
+\mbox{\label{group___k_m__wave_ga967e9ef25db1b475f9e350719fda7a87}} 
+\index{Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}!wave\_init@{wave\_init}}
+\index{wave\_init@{wave\_init}!Signal library $<$wave.h$>$@{Signal library $<$wave.h$>$}}
+\doxysubsubsection{wave\_init()}
+{\footnotesize\ttfamily void wave\+\_\+init (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{type\+\_\+signal,  }\item[{uint16\+\_\+t}]{freq\+\_\+signal }\end{DoxyParamCaption})}
+
+
+
+Initializing values further used for computing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em takes} & the signal type (1 for sine, 2 for triangle, 3 for square) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}

@@ -1,0 +1,20 @@
+\doxysection{wave.\+h File Reference}
+\label{wave_8h}\index{wave.h@{wave.h}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ wave\+\_\+init} (uint8\+\_\+t type\+\_\+signal, uint16\+\_\+t freq\+\_\+signal)
+\begin{DoxyCompactList}\small\item\em Initializing values further used for computing. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calculate} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of the given signal. \end{DoxyCompactList}\item 
+void \textbf{ wave\+\_\+reset} (void)
+\begin{DoxyCompactList}\small\item\em resets all calculations. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calc\+\_\+sine} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of sine. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calc\+\_\+triangle} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of triangle. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ wave\+\_\+calc\+\_\+square} (void)
+\begin{DoxyCompactList}\small\item\em Calculates the next value of square. Used in \doxyref{wave\+\_\+calculate()}{p.}{group___k_m__wave_ga3777eb4f76e2482904e16fb04bae81ba} \end{DoxyCompactList}\item 
+void {\bfseries walk} (void)
+\end{DoxyCompactItemize}

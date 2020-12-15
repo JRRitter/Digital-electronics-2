@@ -1,0 +1,76 @@
+\doxysection{Keypad library $<$kpd.\+h$>$}
+\label{group___k_m__kpd}\index{Keypad library $<$kpd.h$>$@{Keypad library $<$kpd.h$>$}}
+
+
+Scan keypad for pressed buttons.  
+
+
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ kpd\+\_\+init} (void)
+\begin{DoxyCompactList}\small\item\em Initializing pins specified in \doxyref{kpd\+\_\+definitions.\+h}{p.}{kpd__definitions_8h_source}. \end{DoxyCompactList}\item 
+uint8\+\_\+t \textbf{ kpd\+\_\+scan} (void)
+\begin{DoxyCompactList}\small\item\em Initializing pins specified in \doxyref{kpd\+\_\+definitions.\+h}{p.}{kpd__definitions_8h_source}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Scan keypad for pressed buttons. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include <kpd.h>} }
+\end{DoxyCode}
+
+
+This library scans a 4x3 keypad for any pressed buttons.
+
+\begin{DoxyAuthor}{Author}
+John Richard Ritter 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\label{group___k_m__kpd_gac22b4b475ab58ce8274beb55340ba782}} 
+\index{Keypad library $<$kpd.h$>$@{Keypad library $<$kpd.h$>$}!kpd\_init@{kpd\_init}}
+\index{kpd\_init@{kpd\_init}!Keypad library $<$kpd.h$>$@{Keypad library $<$kpd.h$>$}}
+\doxysubsubsection{kpd\_init()}
+{\footnotesize\ttfamily void kpd\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializing pins specified in \doxyref{kpd\+\_\+definitions.\+h}{p.}{kpd__definitions_8h_source}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em The} & definitions in \doxyref{kpd\+\_\+definitions.\+h}{p.}{kpd__definitions_8h_source} are used \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+Configures the defined row pins as inputs with pull-\/up resistors and the column ports as outputs and sets them to high. \mbox{\label{group___k_m__kpd_gad2bd63cd890e54b15c81c7cebfe492fa}} 
+\index{Keypad library $<$kpd.h$>$@{Keypad library $<$kpd.h$>$}!kpd\_scan@{kpd\_scan}}
+\index{kpd\_scan@{kpd\_scan}!Keypad library $<$kpd.h$>$@{Keypad library $<$kpd.h$>$}}
+\doxysubsubsection{kpd\_scan()}
+{\footnotesize\ttfamily uint8\+\_\+t kpd\+\_\+scan (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializing pins specified in \doxyref{kpd\+\_\+definitions.\+h}{p.}{kpd__definitions_8h_source}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Numerical value of pressed button. Returns 10 for $\ast$ and 11 for \#. Returns 255 if no or multiple buttons are pressed.
+\end{DoxyReturn}
+Configures the defined row pins as inputs with pull-\/up resistors and the column ports as outputs and sets them to high.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ out}}  & {\em numerical} & value of pressed button (10 is $\ast$, 11 is \#) \\
+\hline
+\end{DoxyParams}

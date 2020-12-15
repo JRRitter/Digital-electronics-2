@@ -1,0 +1,34 @@
+\doxysection{main.\+c File Reference}
+\label{main_8c}\index{main.c@{main.c}}
+{\ttfamily \#include $<$avr/io.\+h$>$}\newline
+{\ttfamily \#include $<$avr/interrupt.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}lcd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}kpd.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}uart.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}wave.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+int {\bfseries main} (void)
+\item 
+\mbox{\label{main_8c_ad39420cdd896dd12c68e36313139d0a5}} 
+{\bfseries I\+SR} (T\+I\+M\+E\+R1\+\_\+\+C\+O\+M\+P\+A\+\_\+vect)
+\item 
+\mbox{\label{main_8c_a7cfcbe42bd266750aeb6e5d71e5ea479}} 
+{\bfseries I\+SR} (T\+I\+M\+E\+R2\+\_\+\+O\+V\+F\+\_\+vect)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\label{main_8c_a6536c0c1194a74d1ff793413b9c85d16}} 
+volatile uint8\+\_\+t {\bfseries gen\+\_\+type} = 255
+\item 
+\mbox{\label{main_8c_a3c0f07d02928585a6f2470530779e993}} 
+volatile uint16\+\_\+t {\bfseries gen\+\_\+frequency} = 0
+\item 
+\mbox{\label{main_8c_a831c3f35713fe6b0a761de23e25e3c7e}} 
+volatile uint8\+\_\+t {\bfseries gen\+\_\+out\+\_\+on} = 0
+\end{DoxyCompactItemize}
