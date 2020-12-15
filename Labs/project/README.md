@@ -39,7 +39,7 @@ Using the # key the user starts the signal selection program where he chooses th
 
 ## Video/Animation
 
-
+It is in the [Images folder](https://github.com/JRRitter/Digital-electronics-2/blob/master/Labs/project/Images/simulation.wmv)
 
 
 ## References
