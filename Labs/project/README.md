@@ -23,15 +23,16 @@ The keypad is connected to the C port with pins PC[4:6] used for its columns and
 
 ## Code description and simulations
 
-The main controlling logic of the whole code is in the ´main.c´ file. It contains all initializing and also the interrupt service routines of two timer/counters used.
+The main controlling logic of the whole code is in the `main.c` file. It contains all initializing and also the interrupt service routines of two timer/counters used.
 Timer/counter 2 in normal mode with the overflow interrupt enabled is used for keypad scanning with debouncing and menu navigation.
 Timer/counter 1 in CTC mode with a prescaler of 8 and a compare value of 256 (resulting in a frequency of 7800 Hz) is used for signal generation.
 
-For easier programming, two more custom libraries have been designed: ´kpd.h´ and ´wave.h´.
+For easier programming, two more custom libraries have been designed: `kpd.h` and `wave.h`.
 
-´kpd.h´ handles the keypad, it initializes the desired I/O ports and enables the user to read the pressed button. Debouncing of buttons occurs in ´main.c´ in order to prevent using the delay function.
+`kpd.h` handles the keypad, it initializes the desired I/O ports and enables the user to read the pressed button. Debouncing of buttons occurs in `main.c`
+ in order to prevent using the delay function.
 
-´wave.h´ handles the signal generation. It initializes its internal variables given a signal type and frequency. A calculating function then outputs 8-bit values for said function. A 512 bit long look-up table is used for creating sine, triangle and square are easily computed.
+`wave.h` handles the signal generation. It initializes its internal variables given a signal type and frequency. A calculating function then outputs 8-bit values for said function. A 512 bit long look-up table is used for creating sine, triangle and square are easily computed.
 
 Taking into consideration the interrupt frequency of Timer/Counter 2 and the look-up table size an effective frequency range of 15-1000 Hz can be achieved.
 
